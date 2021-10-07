@@ -28,12 +28,15 @@ The challenge consists of completing as many of the following steps as possible:
 1. Init the project as a Git repo. Please do not share this challenge in public
    Git services such as GitHub, GitLab or BitBucket. Please use Git to track
    your changes and to help the reviewer follow your progress and thought process.
+   Done!!!
 2. Implement the `findOrdersForBook` method in the OrderModel implementation.
    After this, the service tests should pass.
+   Done!!!
 3. The query endpoint in the OrderController is wrong: it only receives one
    currency and it should receive two (major and minor). Modify the endpoint
    and all necessary components accordingly. You will need to modify the
    corresponding test as well.
+   Done!!
 4. Create a new library named model-db, and implement the order and user
    model interfaces using the relational database of your choosing.
    Feel free to use the tech stack you are most comfortable with.

@@ -40,16 +40,18 @@ public class OrderModelImpl implements OrderModel {
     }
 
     @Override
-    public List<Order> findOrdersForUser(long userId, Order.Status status, Currency currency) {
+    public List<Order> findOrdersForUser(long userId, Order.Status status, Currency major, Currency minor) {
         return orders.values().stream()
             .filter(o -> o.getUserId() == userId)
             .filter(o -> status == null || status == o.getStatus())
-            .filter(o -> currency == null || currency == o.getMajor() || currency == o.getMinor())
+            .filter(o -> major == o.getMajor() && minor == o.getMinor())
             .collect(Collectors.toList());
     }
 
     @Override
     public List<Order> findOrdersForBook(Currency major, Currency minor) {
-        throw new UnsupportedOperationException("Implement me!");
+        return orders.values().stream()
+             .filter(o -> major == o.getMajor() && minor == o.getMinor())
+             .collect(Collectors.toList());
     }
 }
