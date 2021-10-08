@@ -5,6 +5,7 @@ import com.bitso.challenge.entity.Order;
 import com.bitso.challenge.entity.User;
 import com.bitso.challenge.model.OrderModel;
 import com.bitso.challenge.model.UserModel;
+import com.bitso.challenge.model.db.OrderModelDBImpl;
 import com.bitso.challenge.model.ram.OrderModelImpl;
 import com.bitso.challenge.model.ram.UserModelImpl;
 import org.springframework.boot.SpringApplication;
@@ -39,9 +40,29 @@ public class ServiceApplication {
         return um;
     }
 
-    @Bean
+    @Bean(name = "modelRam")
     public OrderModel orderModel() throws IOException, URISyntaxException {
         OrderModelImpl om = new OrderModelImpl();
+        //Populate
+        Files.lines(Paths.get(getClass().getResource("/orders.csv").toURI())).map(line -> {
+            Order order = new Order();
+            String[] parts = line.split(",");
+            order.setUserId(Long.parseLong(parts[0]));
+            order.setStatus(Order.Status.valueOf(parts[1]));
+            order.setCreated(new Date(Long.parseLong(parts[2])));
+            order.setMajor(Currency.valueOf(parts[3]));
+            order.setMinor(Currency.valueOf(parts[4]));
+            order.setAmount(new BigDecimal(parts[5]));
+            order.setPrice(new BigDecimal(parts[6]));
+            order.setBuy("buy".equals(parts[7]));
+            return order;
+        }).forEach(om::insert);
+        return om;
+    }
+
+    @Bean(name = "modelDB")
+    public OrderModel orderModelDB() throws IOException, URISyntaxException {
+        OrderModelDBImpl om = new OrderModelDBImpl();
         //Populate
         Files.lines(Paths.get(getClass().getResource("/orders.csv").toURI())).map(line -> {
             Order order = new Order();

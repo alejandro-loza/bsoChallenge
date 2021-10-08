@@ -6,6 +6,7 @@ import com.bitso.challenge.model.OrderModel;
 import com.bitso.challenge.model.UserModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -21,7 +22,9 @@ public class OrderController {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Inject
+    @Qualifier("modelDB")
     private OrderModel orderModel;
+
     @Inject
     private UserModel userModel;
 

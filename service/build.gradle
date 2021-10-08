@@ -17,7 +17,7 @@ version=1.1
 dependencies {
     annotationProcessor "org.projectlombok:lombok:1.18.16"
     compileOnly "org.projectlombok:lombok:1.18.16"
-    implementation project(':model'), project(':model-ram'),
+    implementation project(':model'), project(':model-ram'), project(':model-db'),
         'javax.inject:javax.inject:1',
         'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.codehaus.groovy:groovy:3.0.6',

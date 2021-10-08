@@ -1,6 +1,7 @@
 package com.bitso.challenge.service
 
 import com.bitso.challenge.model.OrderModel
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.HttpEntity
@@ -20,6 +21,7 @@ import javax.inject.Inject
 class TestController extends Specification {
 
     @Inject
+    @Qualifier("modelDB")
     OrderModel model
     @Value('${local.server.port}')
     int port
