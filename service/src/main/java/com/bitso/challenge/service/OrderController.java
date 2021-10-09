@@ -3,8 +3,11 @@ package com.bitso.challenge.service;
 import com.bitso.challenge.entity.Currency;
 import com.bitso.challenge.entity.Order;
 import com.bitso.challenge.model.OrderModel;
+import com.bitso.challenge.model.OrderModelDBImpl;
 import com.bitso.challenge.model.UserModel;
+import com.bitso.challenge.model.ram.UserModelImpl;
 import com.bitso.challenge.validation.OrderCmd;
+import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,12 +25,14 @@ public class OrderController {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
-    @Inject
-    @Qualifier("modelRam")
     private OrderModel orderModel;
 
-    @Inject
     private UserModel userModel;
+
+    public OrderController() {
+        this.orderModel = new OrderModelDBImpl();
+        this.userModel =  new UserModelImpl();
+    }
 
     @RequestMapping("/get/{id}")
     @ResponseBody

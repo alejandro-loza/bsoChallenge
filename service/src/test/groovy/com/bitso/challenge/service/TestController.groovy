@@ -1,6 +1,9 @@
 package com.bitso.challenge.service
 
 import com.bitso.challenge.model.OrderModel
+import com.bitso.challenge.model.OrderModelDBImpl
+import com.bitso.challenge.model.UserModel
+import com.bitso.challenge.model.ram.UserModelImpl
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
@@ -20,9 +23,8 @@ import javax.inject.Inject
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class TestController extends Specification {
 
-    @Inject
-    @Qualifier("modelRam")
-    OrderModel model
+    OrderModel model = new OrderModelDBImpl()
+
     @Value('${local.server.port}')
     int port
     RestTemplate rest = new RestTemplate()
