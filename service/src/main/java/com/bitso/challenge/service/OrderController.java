@@ -22,7 +22,7 @@ public class OrderController {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Inject
-    @Qualifier("modelDB")
+    @Qualifier("modelRam")
     private OrderModel orderModel;
 
     @Inject
