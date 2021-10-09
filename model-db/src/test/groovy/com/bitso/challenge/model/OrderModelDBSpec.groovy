@@ -1,7 +1,6 @@
-package com.bitso.challenge.model.db
+package com.bitso.challenge.model
 
-import com.bitso.challenge.entity.Order
-import com.bitso.challenge.model.db.entity.OrderEntity
+
 import com.bitso.challenge.validation.OrderCmd
 import spock.lang.Specification
 

@@ -5,7 +5,7 @@ import com.bitso.challenge.entity.Order;
 import com.bitso.challenge.entity.User;
 import com.bitso.challenge.model.OrderModel;
 import com.bitso.challenge.model.UserModel;
-import com.bitso.challenge.model.db.OrderModelDBImpl;
+import com.bitso.challenge.model.OrderModelDBImpl;
 import com.bitso.challenge.model.ram.OrderModelImpl;
 import com.bitso.challenge.model.ram.OrderRam;
 import com.bitso.challenge.model.ram.UserModelImpl;
@@ -24,7 +24,8 @@ import java.util.stream.LongStream;
 /**
  * Entry point and configuration provider.
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages={
+        "com.bitso.challenge.service", "com.bitso.challenge"})
 public class ServiceApplication {
 
     @Bean
