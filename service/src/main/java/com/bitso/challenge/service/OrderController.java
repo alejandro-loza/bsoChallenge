@@ -4,6 +4,7 @@ import com.bitso.challenge.entity.Currency;
 import com.bitso.challenge.entity.Order;
 import com.bitso.challenge.model.OrderModel;
 import com.bitso.challenge.model.UserModel;
+import com.bitso.challenge.validation.OrderCmd;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -39,10 +40,9 @@ public class OrderController {
     }
 
     @RequestMapping("/submit") @PostMapping
-    public Order submit(Order order) {
-        log.debug("Submitting order {}", order);
-        orderModel.submit(order);
-        return order;
+    public Order submit(OrderCmd cmd) {
+        log.debug("Submitting order {}", cmd);
+        return orderModel.submit(cmd);
     }
 
     @RequestMapping("/book/{major}/{minor}")

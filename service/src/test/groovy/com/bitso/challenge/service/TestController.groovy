@@ -21,7 +21,7 @@ import javax.inject.Inject
 class TestController extends Specification {
 
     @Inject
-    @Qualifier("modelDB")
+    @Qualifier("modelRam")
     OrderModel model
     @Value('${local.server.port}')
     int port

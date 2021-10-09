@@ -7,6 +7,7 @@ import com.bitso.challenge.model.OrderModel;
 import com.bitso.challenge.model.UserModel;
 import com.bitso.challenge.model.db.OrderModelDBImpl;
 import com.bitso.challenge.model.ram.OrderModelImpl;
+import com.bitso.challenge.model.ram.OrderRam;
 import com.bitso.challenge.model.ram.UserModelImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -45,10 +46,10 @@ public class ServiceApplication {
         OrderModelImpl om = new OrderModelImpl();
         //Populate
         Files.lines(Paths.get(getClass().getResource("/orders.csv").toURI())).map(line -> {
-            Order order = new Order();
+            OrderRam order = new OrderRam();
             String[] parts = line.split(",");
             order.setUserId(Long.parseLong(parts[0]));
-            order.setStatus(Order.Status.valueOf(parts[1]));
+            order.setStatus(OrderRam.Status.valueOf(parts[1]));
             order.setCreated(new Date(Long.parseLong(parts[2])));
             order.setMajor(Currency.valueOf(parts[3]));
             order.setMinor(Currency.valueOf(parts[4]));
@@ -67,7 +68,6 @@ public class ServiceApplication {
         Files.lines(Paths.get(getClass().getResource("/orders.csv").toURI())).map(line -> {
             Order order = new Order();
             String[] parts = line.split(",");
-            order.setUserId(Long.parseLong(parts[0]));
             order.setStatus(Order.Status.valueOf(parts[1]));
             order.setCreated(new Date(Long.parseLong(parts[2])));
             order.setMajor(Currency.valueOf(parts[3]));

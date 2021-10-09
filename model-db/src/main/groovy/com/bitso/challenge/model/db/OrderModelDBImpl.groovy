@@ -3,13 +3,14 @@ package com.bitso.challenge.model.db
 import com.bitso.challenge.entity.Currency
 import com.bitso.challenge.entity.Order
 import com.bitso.challenge.model.OrderModel
+import com.bitso.challenge.validation.OrderCmd
 
 
 class OrderModelDBImpl implements OrderModel{
 
     @Override
-    long submit(Order order) {
-        return 666
+    Order submit(OrderCmd order) throws IllegalArgumentException {
+        return new Order()
     }
 
     @Override

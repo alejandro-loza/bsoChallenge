@@ -1,6 +1,8 @@
 package com.bitso.challenge.model.db
 
 import com.bitso.challenge.entity.Order
+import com.bitso.challenge.model.db.entity.OrderEntity
+import com.bitso.challenge.validation.OrderCmd
 import spock.lang.Specification
 
 /**
@@ -13,8 +15,8 @@ class OrderModelDBSpec extends Specification {
     void "insert, then query"() {
 
         expect: "orders by user work"
-        model.submit(new Order(userId: 1, major: 'btc', minor: 'mxn',
-                amount:1.0, price: 350_000.00)) == 666
+        model.submit(new OrderCmd(userId: 1, major: 'btc', minor: 'mxn',
+                amount:1.0, price: 350_000.00)).id == 0
 
     }
 }

@@ -19,7 +19,6 @@ public class Order {
     }
 
     private long id;
-    private long userId;
     private Status status;
     private Date created;
     private Currency major;
